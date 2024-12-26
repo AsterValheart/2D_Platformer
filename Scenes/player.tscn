@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3 uid="uid://bjbdl1abneb41"]
+
+[ext_resource type="Script" path="res://player.gd" id="1_27ttt"]
+[ext_resource type="Texture2D" uid="uid://bqb4j84403j2a" path="res://Sprites/Characters/character_0000.png" id="2_qfnyd"]
+[ext_resource type="AudioStream" uid="uid://bs41jo2iv5ljv" path="res://Sounds/hitHurt.wav" id="2_sg2ya"]
+[ext_resource type="AudioStream" uid="uid://lw1yhkb51tt3" path="res://Sounds/pickupCoin.wav" id="3_6wd5u"]
+[ext_resource type="AudioStream" uid="uid://bjypugpq6mo8o" path="res://Sounds/synth.wav" id="4_vxts2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgjok"]
+height = 24.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_jqxja"]
+line_spacing = 8.0
+font_size = 48
+font_color = Color(0.780559, 0.97675, 1, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+script = ExtResource("1_27ttt")
+
+[node name="HitHurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_sg2ya")
+
+[node name="PickupCoin" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6wd5u")
+
+[node name="Fall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_vxts2")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -13)
+texture = ExtResource("2_qfnyd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_dgjok")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -18)
+zoom = Vector2(3, 3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ScoreText" type="Label" parent="CanvasLayer"]
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 200.0
+offset_bottom = 68.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_jqxja")
+horizontal_alignment = 1
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

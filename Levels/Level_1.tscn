@@ -1,0 +1,72 @@
+[gd_scene load_steps=10 format=4 uid="uid://diecn0kg7e74l"]
+
+[ext_resource type="TileSet" uid="uid://dc1yfex77b3yo" path="res://Tile_Set.tres" id="3_vaa66"]
+[ext_resource type="PackedScene" uid="uid://bjbdl1abneb41" path="res://Scenes/player.tscn" id="4_s8xjh"]
+[ext_resource type="PackedScene" uid="uid://s0u8y632tkdc" path="res://Scenes/enemy.tscn" id="6_io0k3"]
+[ext_resource type="PackedScene" uid="uid://bvjxyi1byf802" path="res://Scenes/spikes.tscn" id="7_q4guk"]
+[ext_resource type="PackedScene" uid="uid://bbj0gymmat1ib" path="res://Scenes/coin.tscn" id="8_dlngg"]
+[ext_resource type="Script" path="res://end_flag.gd" id="9_nn8gr"]
+[ext_resource type="Texture2D" uid="uid://cop47aoytyxtb" path="res://Sprites/Objects/tile_0112.png" id="10_n24fx"]
+[ext_resource type="AudioStream" uid="uid://cl0vrydt1ocfd" path="res://Sounds/Bustling Streets.ogg" id="10_r071h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1uap"]
+size = Vector2(18, 18)
+
+[node name="Main" type="Node2D"]
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD7/wAAAAABAAAAAAD8/wAAAAACAAAAAAD9/wAAAAACAAAAAAD+/wAAAAACAAAAAAD//wAAAAACAAAAAAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAD7/wEAAAAAAAYAAAD7/wIAAAAAAAYAAAD8/wEAAAAFAAAAAAD8/wIAAAAFAAEAAAD9/wEAAAAEAAAAAAD9/wIAAAAEAAEAAAD+/wEAAAAFAAAAAAD+/wIAAAAFAAEAAAD//wEAAAAEAAAAAAD//wIAAAAEAAEAAAAAAAEAAAAFAAAAAAAAAAIAAAAFAAEAAAABAAEAAAAEAAAAAAABAAIAAAAEAAEAAAACAAEAAAAFAAAAAAACAAIAAAAFAAEAAAADAAEAAAAEAAAAAAADAAIAAAAEAAEAAAAEAAEAAAAFAAAAAAAEAAIAAAAFAAEAAAAFAAEAAAAEAAAAAAAFAAIAAAAEAAEAAAAGAAEAAAADAAYAAAAGAAIAAAADAAYAAAAGAAAAAAADAAAAAAAKAAAAAAABAAUAAAAKAAEAAAABAAYAAAAKAAIAAAABAAcAAAALAAAAAAACAAUAAAALAAEAAAACAAYAAAALAAIAAAACAAcAAAAMAAAAAAADAAUAAAAMAAEAAAADAAYAAAAMAAIAAAADAAcAAAAQAAAAAAABAAUAAAAQAAEAAAABAAYAAAAQAAIAAAABAAcAAAARAAAAAAACAAUAAAARAAEAAAACAAYAAAARAAIAAAACAAcAAAASAAAAAAADAAUAAAASAAEAAAADAAYAAAASAAIAAAADAAcAAAAVAAAAAAAMAAYAAAAWAAAAAAANAAYAAAAXAAAAAAANAAYAAAAYAAAAAAANAAYAAAAZAAAAAAANAAYAAAAaAAAAAAANAAYAAAAbAAAAAAAOAAQAAAAbAAEAAAAPAAUAAAAbAAIAAAANAAUAAAAcAAIAAAANAAYAAAAdAAIAAAANAAYAAAAeAAIAAAANAAYAAAAfAAIAAAANAAYAAAAgAAIAAAANAAYAAAAhAAIAAAAOAAUAAAAhAAEAAAAPAAUAAAAhAAAAAAANAAQAAAD7/wMAAAABAAcAAAAGAAMAAAADAAcAAAD8/wMAAAACAAcAAAD9/wMAAAACAAcAAAD+/wMAAAACAAcAAAD//wMAAAACAAcAAAAAAAMAAAACAAcAAAABAAMAAAACAAcAAAACAAMAAAACAAcAAAADAAMAAAACAAcAAAAEAAMAAAACAAcAAAAFAAMAAAACAAcAAAAiAAAAAAANAAYAAAAjAAAAAAANAAYAAAAkAAAAAAANAAYAAAAlAAAAAAANAAYAAAAmAAAAAAANAAYAAAAnAAAAAAAOAAUAAAAnAP//AAAPAAUAAAAnAP7/AAAPAAQAAAApAP3/AAAIAAIAAAAqAP3/AAAJAAIAAAArAP3/AAAKAAIAAAA=")
+tile_set = ExtResource("3_vaa66")
+rendering_quadrant_size = 18
+
+[node name="Player" parent="." instance=ExtResource("4_s8xjh")]
+
+[node name="Enemy" parent="." instance=ExtResource("6_io0k3")]
+
+[node name="Enemy2" parent="." instance=ExtResource("6_io0k3")]
+position = Vector2(232, -3)
+
+[node name="Spikes" parent="." instance=ExtResource("7_q4guk")]
+position = Vector2(279, 0)
+
+[node name="Spikes2" parent="." instance=ExtResource("7_q4guk")]
+position = Vector2(429, 0)
+
+[node name="Spikes3" parent="." instance=ExtResource("7_q4guk")]
+position = Vector2(530, 22)
+rotation = -1.57079
+
+[node name="Spikes4" parent="." instance=ExtResource("7_q4guk")]
+position = Vector2(448, 21)
+rotation = -4.71238
+
+[node name="Coin" parent="." instance=ExtResource("8_dlngg")]
+position = Vector2(279, -36)
+
+[node name="Coin2" parent="." instance=ExtResource("8_dlngg")]
+position = Vector2(347, -22)
+
+[node name="Coin4" parent="." instance=ExtResource("8_dlngg")]
+position = Vector2(504, 11)
+
+[node name="Coin3" parent="." instance=ExtResource("8_dlngg")]
+position = Vector2(185, -21)
+
+[node name="EndFlag" type="Area2D" parent="."]
+position = Vector2(682, -58)
+script = ExtResource("9_nn8gr")
+next_scene = "res://Levels/Level_2.tscn"
+
+[node name="Sprite" type="Sprite2D" parent="EndFlag"]
+texture = ExtResource("10_n24fx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndFlag"]
+shape = SubResource("RectangleShape2D_x1uap")
+
+[node name="BG" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_r071h")
+volume_db = -12.0
+autoplay = true
+
+[connection signal="body_entered" from="EndFlag" to="EndFlag" method="_on_body_entered"]

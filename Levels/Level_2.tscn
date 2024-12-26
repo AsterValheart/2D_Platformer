@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=4 uid="uid://wq4sg7oasl04"]
+
+[ext_resource type="TileSet" uid="uid://dc1yfex77b3yo" path="res://Tile_Set.tres" id="1_hrkkm"]
+[ext_resource type="PackedScene" uid="uid://bjbdl1abneb41" path="res://Scenes/player.tscn" id="2_4qoa0"]
+[ext_resource type="PackedScene" uid="uid://s0u8y632tkdc" path="res://Scenes/enemy.tscn" id="3_5tx8i"]
+[ext_resource type="PackedScene" uid="uid://cacvw880q4qxj" path="res://Scenes/end_flag.tscn" id="4_td4n3"]
+[ext_resource type="PackedScene" uid="uid://bbj0gymmat1ib" path="res://Scenes/coin.tscn" id="5_5dpow"]
+[ext_resource type="AudioStream" uid="uid://b4i63y6othb40" path="res://Sounds/Long Road Ahead.ogg" id="6_hbhfs"]
+
+[node name="Main" type="Node2D"]
+
+[node name="BG" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_hbhfs")
+volume_db = -12.0
+autoplay = true
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+position = Vector2(-28, -4)
+tile_map_data = PackedByteArray("AAD8/wEAAAARAAAAAAD9/wEAAAASAAAAAAD+/wEAAAASAAAAAAD//wEAAAASAAAAAAAAAAEAAAASAAAAAAABAAEAAAASAAAAAAACAAEAAAASAAAAAAADAAEAAAASAAAAAAAEAAEAAAASAAAAAAAFAAEAAAASAAAAAAAGAAEAAAASAAAAAAAHAAEAAAASAAAAAAAIAAEAAAATAAAAAAANAAIAAAARAAAAAAAOAAIAAAASAAAAAAAPAAIAAAASAAAAAAAQAAIAAAATAAAAAAATAAEAAAARAAAAAAAUAAEAAAASAAAAAAAVAAEAAAASAAAAAAAWAAEAAAASAAAAAAAXAAEAAAATAAAAAAAYAAcAAAARAAAAAAAZAAcAAAASAAAAAAAaAAcAAAASAAAAAAAbAAcAAAASAAAAAAAcAAcAAAASAAAAAAAdAAcAAAASAAAAAAAeAAcAAAATAAAAAAAiAAcAAAARAAAAAAAjAAcAAAASAAAAAAAkAAcAAAASAAAAAAAlAAcAAAASAAAAAAAmAAcAAAASAAAAAAAnAAcAAAATAAAAAAD8/wIAAAARAAEAAAD8/wMAAAARAAIAAAD9/wIAAAASAAEAAAD9/wMAAAASAAIAAAD+/wIAAAASAAEAAAD+/wMAAAASAAIAAAAGAAIAAAASAAEAAAAGAAMAAAASAAIAAAAHAAIAAAASAAEAAAAHAAMAAAASAAIAAAAIAAIAAAATAAEAAAAIAAMAAAATAAIAAAANAAMAAAARAAEAAAANAAQAAAARAAIAAAAOAAMAAAASAAEAAAAOAAQAAAASAAIAAAAPAAMAAAASAAEAAAAPAAQAAAASAAIAAAAQAAMAAAATAAEAAAAQAAQAAAATAAIAAAATAAIAAAARAAEAAAATAAMAAAARAAIAAAAUAAIAAAASAAEAAAAUAAMAAAASAAIAAAAVAAIAAAASAAEAAAAVAAMAAAASAAIAAAAWAAIAAAASAAEAAAAWAAMAAAASAAIAAAAXAAIAAAATAAEAAAAXAAMAAAATAAIAAAAYAAgAAAARAAEAAAAYAAkAAAARAAIAAAAZAAgAAAASAAEAAAAZAAkAAAASAAIAAAAaAAgAAAASAAEAAAAaAAkAAAASAAIAAAAcAAgAAAASAAEAAAAcAAkAAAASAAIAAAAdAAgAAAASAAEAAAAdAAkAAAASAAIAAAAeAAgAAAATAAEAAAAeAAkAAAATAAIAAAAiAAgAAAARAAEAAAAiAAkAAAARAAIAAAAjAAgAAAASAAEAAAAjAAkAAAASAAIAAAAkAAgAAAASAAEAAAAkAAkAAAASAAIAAAAlAAgAAAASAAEAAAAlAAkAAAASAAIAAAAmAAgAAAASAAEAAAAmAAkAAAASAAIAAAAnAAgAAAATAAEAAAAnAAkAAAATAAIAAAAbAAgAAAASAAEAAAAbAAkAAAASAAIAAAAFAAIAAAASAAEAAAAFAAMAAAASAAIAAAAEAAIAAAASAAEAAAAEAAMAAAASAAIAAAADAAIAAAASAAEAAAADAAMAAAASAAIAAAACAAIAAAASAAEAAAACAAMAAAASAAIAAAABAAIAAAASAAEAAAABAAMAAAASAAIAAAAAAAIAAAASAAEAAAAAAAMAAAASAAIAAAD//wIAAAASAAEAAAD//wMAAAASAAIAAAApAAcAAAAQAAEAAAApAAgAAAAQAAIAAAApAAkAAAAQAAMAAAAsAAkAAAAQAAEAAAAsAAoAAAAQAAIAAAAsAAsAAAAQAAMAAAAuAAgAAAAQAAEAAAAuAAkAAAAQAAIAAAAuAAoAAAAQAAMAAAAxAAoAAAAQAAEAAAAxAAsAAAAQAAIAAAAxAAwAAAAQAAMAAAA0AA8AAAAQAAAAAAA=")
+tile_set = ExtResource("1_hrkkm")
+rendering_quadrant_size = 18
+
+[node name="Player" parent="." instance=ExtResource("2_4qoa0")]
+position = Vector2(-29, 9)
+
+[node name="Enemy" parent="." instance=ExtResource("3_5tx8i")]
+position = Vector2(147, 45)
+
+[node name="Enemy2" parent="." instance=ExtResource("3_5tx8i")]
+position = Vector2(260, 38)
+
+[node name="Enemy3" parent="." instance=ExtResource("3_5tx8i")]
+position = Vector2(412, 68)
+
+[node name="Enemy4" parent="." instance=ExtResource("3_5tx8i")]
+position = Vector2(662, 122)
+
+[node name="Enemy5" parent="." instance=ExtResource("3_5tx8i")]
+position = Vector2(788, 228)
+
+[node name="EndFlag" parent="." instance=ExtResource("4_td4n3")]
+position = Vector2(814, 229)
+next_scene = "res://Levels/Level_3.tscn"
+
+[node name="Coin" parent="." instance=ExtResource("5_5dpow")]
+position = Vector2(105, -4)
+
+[node name="Coin2" parent="." instance=ExtResource("5_5dpow")]
+position = Vector2(232, 14)
+
+[node name="Coin3" parent="." instance=ExtResource("5_5dpow")]
+position = Vector2(343, 87)
+
+[node name="Coin4" parent="." instance=ExtResource("5_5dpow")]
+position = Vector2(494, 66)
+
+[node name="Coin5" parent="." instance=ExtResource("5_5dpow")]
+position = Vector2(740, 134)
+
+[node name="Coin6" parent="." instance=ExtResource("5_5dpow")]
+position = Vector2(792, 187)

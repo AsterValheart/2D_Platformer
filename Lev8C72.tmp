@@ -1,0 +1,95 @@
+[gd_scene load_steps=14 format=4 uid="uid://diecn0kg7e74l"]
+
+[ext_resource type="AudioStream" uid="uid://bs41jo2iv5ljv" path="res://Sounds/hitHurt.wav" id="1_al46h"]
+[ext_resource type="TileSet" uid="uid://dc1yfex77b3yo" path="res://Tile_Set.tres" id="1_vgu44"]
+[ext_resource type="AudioStream" uid="uid://lw1yhkb51tt3" path="res://Sounds/pickupCoin.wav" id="2_0i3da"]
+[ext_resource type="Script" path="res://player.gd" id="2_jppkx"]
+[ext_resource type="Texture2D" uid="uid://bqb4j84403j2a" path="res://Sprites/Characters/character_0000.png" id="3_uvp6d"]
+[ext_resource type="PackedScene" uid="uid://s0u8y632tkdc" path="res://enemy.tscn" id="4_lmsib"]
+[ext_resource type="PackedScene" uid="uid://bvjxyi1byf802" path="res://spikes.tscn" id="5_jmgew"]
+[ext_resource type="PackedScene" uid="uid://bbj0gymmat1ib" path="res://coin.tscn" id="6_45oty"]
+[ext_resource type="Script" path="res://end_flag.gd" id="9_4wcbl"]
+[ext_resource type="Texture2D" uid="uid://cop47aoytyxtb" path="res://Sprites/Objects/tile_0112.png" id="9_f0vh2"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dgjok"]
+height = 24.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_jqxja"]
+line_spacing = 8.0
+font_size = 48
+font_color = Color(0.780559, 0.97675, 1, 1)
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1uap"]
+size = Vector2(18, 18)
+
+[node name="Main" type="Node2D"]
+
+[node name="Sounds" type="Node2D" parent="."]
+
+[node name="HitHurt" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("1_al46h")
+
+[node name="PickupCoin" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("2_0i3da")
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD7/wAAAAABAAAAAAD8/wAAAAACAAAAAAD9/wAAAAACAAAAAAD+/wAAAAACAAAAAAD//wAAAAACAAAAAAAAAAAAAAACAAAAAAABAAAAAAACAAAAAAACAAAAAAACAAAAAAADAAAAAAACAAAAAAAEAAAAAAACAAAAAAAFAAAAAAACAAAAAAD7/wEAAAAAAAYAAAD7/wIAAAAAAAYAAAD8/wEAAAAFAAAAAAD8/wIAAAAFAAEAAAD9/wEAAAAEAAAAAAD9/wIAAAAEAAEAAAD+/wEAAAAFAAAAAAD+/wIAAAAFAAEAAAD//wEAAAAEAAAAAAD//wIAAAAEAAEAAAAAAAEAAAAFAAAAAAAAAAIAAAAFAAEAAAABAAEAAAAEAAAAAAABAAIAAAAEAAEAAAACAAEAAAAFAAAAAAACAAIAAAAFAAEAAAADAAEAAAAEAAAAAAADAAIAAAAEAAEAAAAEAAEAAAAFAAAAAAAEAAIAAAAFAAEAAAAFAAEAAAAEAAAAAAAFAAIAAAAEAAEAAAAGAAEAAAADAAYAAAAGAAIAAAADAAYAAAAGAAAAAAADAAAAAAAKAAAAAAABAAUAAAAKAAEAAAABAAYAAAAKAAIAAAABAAcAAAALAAAAAAACAAUAAAALAAEAAAACAAYAAAALAAIAAAACAAcAAAAMAAAAAAADAAUAAAAMAAEAAAADAAYAAAAMAAIAAAADAAcAAAAQAAAAAAABAAUAAAAQAAEAAAABAAYAAAAQAAIAAAABAAcAAAARAAAAAAACAAUAAAARAAEAAAACAAYAAAARAAIAAAACAAcAAAASAAAAAAADAAUAAAASAAEAAAADAAYAAAASAAIAAAADAAcAAAAVAAAAAAAMAAYAAAAWAAAAAAANAAYAAAAXAAAAAAANAAYAAAAYAAAAAAANAAYAAAAZAAAAAAANAAYAAAAaAAAAAAANAAYAAAAbAAAAAAAOAAQAAAAbAAEAAAAPAAUAAAAbAAIAAAANAAUAAAAcAAIAAAANAAYAAAAdAAIAAAANAAYAAAAeAAIAAAANAAYAAAAfAAIAAAANAAYAAAAgAAIAAAANAAYAAAAhAAIAAAAOAAUAAAAhAAEAAAAPAAUAAAAhAAAAAAANAAQAAAD7/wMAAAABAAcAAAAGAAMAAAADAAcAAAD8/wMAAAACAAcAAAD9/wMAAAACAAcAAAD+/wMAAAACAAcAAAD//wMAAAACAAcAAAAAAAMAAAACAAcAAAABAAMAAAACAAcAAAACAAMAAAACAAcAAAADAAMAAAACAAcAAAAEAAMAAAACAAcAAAAFAAMAAAACAAcAAAAiAAAAAAANAAYAAAAjAAAAAAANAAYAAAAkAAAAAAANAAYAAAAlAAAAAAANAAYAAAAmAAAAAAANAAYAAAAnAAAAAAAOAAUAAAAnAP//AAAPAAUAAAAnAP7/AAAPAAQAAAApAP3/AAAIAAIAAAAqAP3/AAAJAAIAAAArAP3/AAAKAAIAAAA=")
+tile_set = ExtResource("1_vgu44")
+rendering_quadrant_size = 18
+
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
+script = ExtResource("2_jppkx")
+
+[node name="Sprite" type="Sprite2D" parent="Player"]
+position = Vector2(0, -13)
+texture = ExtResource("3_uvp6d")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, -13)
+shape = SubResource("CapsuleShape2D_dgjok")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(0, -18)
+zoom = Vector2(3, 3)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Player"]
+
+[node name="ScoreText" type="Label" parent="Player/CanvasLayer"]
+offset_left = 19.0
+offset_top = 1.0
+offset_right = 200.0
+offset_bottom = 68.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_jqxja")
+horizontal_alignment = 1
+
+[node name="Enemy" parent="." instance=ExtResource("4_lmsib")]
+
+[node name="Enemy2" parent="." instance=ExtResource("4_lmsib")]
+position = Vector2(232, -3)
+
+[node name="Spikes" parent="." instance=ExtResource("5_jmgew")]
+
+[node name="Coin" parent="." instance=ExtResource("6_45oty")]
+
+[node name="Coin2" parent="." instance=ExtResource("6_45oty")]
+position = Vector2(-73, -19)
+
+[node name="Coin3" parent="." instance=ExtResource("6_45oty")]
+position = Vector2(185, -21)
+
+[node name="EndFlag" type="Area2D" parent="."]
+position = Vector2(682, -58)
+script = ExtResource("9_4wcbl")
+next_scene = "res://Level_1.tscn"
+
+[node name="Sprite" type="Sprite2D" parent="EndFlag"]
+texture = ExtResource("9_f0vh2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EndFlag"]
+shape = SubResource("RectangleShape2D_x1uap")
+
+[connection signal="body_entered" from="EndFlag" to="EndFlag" method="_on_body_entered"]

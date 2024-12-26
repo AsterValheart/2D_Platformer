@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cacvw880q4qxj"]
+
+[ext_resource type="Script" path="res://end_flag.gd" id="1_m5tbi"]
+[ext_resource type="Texture2D" uid="uid://cop47aoytyxtb" path="res://Sprites/Objects/tile_0112.png" id="2_e1yt6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1uap"]
+size = Vector2(18, 18)
+
+[node name="EndFlag" type="Area2D"]
+script = ExtResource("1_m5tbi")
+next_scene = "res://Level_1.tscn"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_e1yt6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_x1uap")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
